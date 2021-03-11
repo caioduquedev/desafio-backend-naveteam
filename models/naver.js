@@ -14,6 +14,12 @@ const naverSchema = new mongoose.Schema({
   job_role: {
     type: String,
   },
+  projects: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Naver", naverSchema);
