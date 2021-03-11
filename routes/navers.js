@@ -31,8 +31,8 @@ router.get("/navers/:id", async (req, res) => {
 // (Store) Rota de Criação de Naver
 router.post("/naver", async (req, res) => {
   try {
-    const body = req.body;
-    const newNaver = new Naver(body);
+    const data = req.body;
+    const newNaver = new Naver(data);
     await newNaver.save();
     res.status(201).json(newNaver);
   } catch (error) {
