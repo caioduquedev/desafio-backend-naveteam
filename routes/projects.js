@@ -8,7 +8,6 @@ router.get("/projects", async (req, res) => {
     const projects = await Project.find({});
     res.status(200).json(projects);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 });
@@ -17,13 +16,12 @@ router.get("/projects", async (req, res) => {
 router.get("/projects/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const project = await Project.findById(id);
+    const project = await Project.findById(id).populate("navers");
     if (!id) {
       return res.status(404).send();
     }
     res.status(200).json(project);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 });
@@ -36,10 +34,8 @@ router.post("/project", async (req, res) => {
     await newProj.save();
     res.status(201).json(newProj);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 });
-
 
 module.exports = router;
